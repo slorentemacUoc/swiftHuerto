@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  huertoUrbano
+
+  Created by Sara Lorente on 25/11/2018.
+  Copyright © 2018 Sara Lorente. All rights reserved.
+*/
+"Iniciar sesion" = "Log in";
+"Usuario" = "User";
+"Contrasena" = "Pass";
+"Error" = "Error";
+"Usuario no valido" = "Incorrect user or question, please try again";
+"Aceptar" = "OK";
+"Registrarse" = "Check in";
+"Cultivos disponibles" = "Available crops";
+"Mi huerta" = "My garden";
+"Configuracion" = "Configuration";
+"Cerrar sesion" = "Sign off";
+"Verano" = "Summer";
+"Otono" = "Autumn";
+"Primavera" = "Spring";
+"Invierno" = "Winter";
+"Siembra" = "Sowing";
+"Cosecha" = "Harvest";
+"Tipo tierra" = "Type of land: ";
+"Espacio" = "Space between plants: ";
+"Poda" = "You need pruning: ";
+"Frecuencia" = "Irrigation frequency: ";
+"Abono" = "Recommended payment: ";
+"Sol" = "Need sun / shadow: ";
+"Temperatura" = "Maximun and minimun temperature: ";
+"Cultivar" = "Cultivate: ";
+"Informacion" = "Information";
+"Anadido" = "Aggregate crop to my garden";
+"Error agregando" = "There was an error adding the crop";
+"Trasplantar" = "Transplant";
+"Cuidar" = "Look after";
+"Sembrar" = "Plant";
+"Cosechar" = "Harvest";
+"Notificar poda" = "Notify pruning";
+"Notificar riego" = "Notify irrigation";
+"Notificar trasplantar" = "Notify transplant";
+"Nombre" = "Username";
+"Email" = "E-mail";
+"Repetir contrasena" = "Repeat password";
+"Dar de alta" = "To register";
+"Contrasena coincidir" = "Passwords must match";
+"Debe rellenar todos los campos" = "You must fill in all fields";
+"Email repetido" = "There is already a user registered with the same email";
+"Alta erronea" = "There was an error when registering, please try again";
+"Alta ok" = "User successfully registered";
+"Sonido" = "Allow sound";
+"Permitir notificaciones" = "Enable notifications";
+"Permitir gps" = "Allow gps";
+"Registros huerta" = "Currently there are no crops in my garden";

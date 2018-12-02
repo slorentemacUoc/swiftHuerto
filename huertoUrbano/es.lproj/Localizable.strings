@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  huertoUrbano
+
+  Created by Sara Lorente on 25/11/2018.
+  Copyright © 2018 Sara Lorente. All rights reserved.
+*/
+"Iniciar sesion" = "Iniciar sesión";
+"Usuario" = "Usuario";
+"Contrasena" = "Contraseña";
+"Error" = "Error";
+"Usuario no valido" = "Usuario o contreseña incorrectos, por favor intentelo de nuevo";
+"Aceptar" = "Aceptar";
+"Registrarse" = "Registrarse";
+"Cultivos disponibles" = "Cultivos disponibles";
+"Mi huerta" = "Mi huerta";
+"Configuracion" = "Configuración";
+"Cerrar sesion" = "Cerrar sesión";
+"Verano" = "Verano";
+"Otono" = "Otoño";
+"Primavera" = "Primavera";
+"Invierno" = "Invierno";
+"Siembra" = "Siembra";
+"Cosecha" = "Cosecha";
+"Tipo tierra" = "Tipo de tierra: ";
+"Espacio" = "Espacio entre plantas: ";
+"Poda" = "Necesita poda: ";
+"Frecuencia" = "Frecuencia de riego: ";
+"Abono" = "Abono recomendado: ";
+"Sol" = "Necesita sol / sombra: ";
+"Temperatura" = "Temperatura máxima y minima: ";
+"Cultivar" = "Cultivar";
+"Informacion" = "Informacion";
+"Anadido" = "Cultivo agregado a mi huerta";
+"Error agregando" = "Se ha producido un error añadiendo el cultivo";
+"Trasplantar" = "Transplantar";
+"Cuidar" = "Cuidar";
+"Sembrar" = "Sembrar";
+"Cosechar" = "Cosechar";
+"Notificar poda" = "Notificar poda";
+"Notificar riego" = "Notificar riego";
+"Notificar trasplantar" = "Notificar trasplantar";
+"Nombre" = "Nombre de usuario";
+"Email" = "E-mail";
+"Repetir contrasena" = "Repetir contraseña";
+"Dar de alta" = "Dar de alta";
+"Contrasena coincidir" = "Las contraseñas deben coincidir";
+"Debe rellenar todos los campos" = "Debe rellenar todos los campos";
+"Email repetido" = "Ya existe un usuario registrado con ese email";
+"Alta erronea" = "Se ha producido un error al realizar el alta, por favor intentelo de nuevo";
+"Alta ok" = "Usuario dado de alta corretamente";
+"Sonido" = "Permitir sonido";
+"Permitir notificaciones" = "Permitir notificaciones";
+"Permitir gps" = "Permitir gps";
+"Registros huerta" = "Actualmente no existen cultivos en mi huerta";
+
