@@ -18,5 +18,13 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>hola</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>hola</string>
+	<key>NSLocationUsageDescription</key>
+	<string>hola</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>hola</string>
 </dict>
 </plist>

@@ -17,6 +17,7 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
     var cultivoUsuario = CultivoUsuario()
     let idioma = Locale.current.languageCode
     var detCultivoUsuario = DetCultivoUsuario()
+    var cultivo = Cultivo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
             cultivo.usuario = self.usuario;
             cultivo.cultivoUsuario = self.cultivoUsuario;
             cultivo.detCultivoUsuario = self.detCultivoUsuario;
+            cultivo.cultivo = self.cultivo;
         }
     }
 
@@ -65,7 +67,6 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cultivoUsuario = miHuerta[indexPath.row]
         obtenDetalleCultivoUsuario()
-        
     }
     
     func eliminaFila(miCultivo: CultivoUsuario){
@@ -98,6 +99,8 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
         task.resume()
     }
     
+    
+    
     func obtenDetalleCultivoUsuario(){
         let urlString = "https://huerto.herokuapp.com/detCultivoUsuario?id=" + cultivoUsuario.idCultivoUsuario;
         //Creo la url
@@ -125,14 +128,57 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
                 let notificarRegar = miCultivoJson["notificarRegar"] as! Bool
                 let notificarPoda = miCultivoJson["notificarPoda"] as! Bool
                 let notificarTrasplantar = miCultivoJson["notificarTransplantar"] as! Bool
-                let descCosecha = miCultivoJson["descCosecha"] as! String
-                let descSiembra = miCultivoJson["descSiembra"] as! String
-                let descTrasplantar = miCultivoJson["descTrasplantar"] as! String
-                let descCrecimiento = miCultivoJson["descCrecimiento"] as! String
-                DispatchQueue.main.async {
-                    self.detCultivoUsuario = DetCultivoUsuario.init(idCultivoUsuario: id, fechaInicio: fecha, cosecha: cosecha, siembra: siembra, crecimiento: crecimiento, trasplantar: trasplantar, notificarRegar: notificarRegar, notificarPoda: notificarPoda, notificarTrasplantar: notificarTrasplantar, descSiembra: descSiembra, descCosecha: descCosecha, descCrecimiento: descCrecimiento, descTrasplantar: descTrasplantar)
+                
+                self.detCultivoUsuario = DetCultivoUsuario.init(idCultivoUsuario: id, fechaInicio: fecha, cosecha: cosecha, siembra: siembra, crecimiento: crecimiento, trasplantar: trasplantar, notificarRegar: notificarRegar, notificarPoda: notificarPoda, notificarTrasplantar: notificarTrasplantar)
+                let urlString = "https://huerto.herokuapp.com/cultivos?id=" + self.cultivoUsuario.idCultivo;
+                    //Creo la url
+                let url = URL(string: urlString);
+                    //Creo la peticion get al servicio web
+                let request = NSMutableURLRequest(url: url!);
+                    request.httpMethod = "GET";
+                let task = URLSession.shared.dataTask(with: url!){
+                        (data,response, error ) in
+                    if(error == nil){
+                        let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                        let result = json as! NSMutableDictionary
+                            //Obtengo los usuarios que me devuelve el servicio web
+                        let cultivosJson = result.object(forKey: "cultivo") as! NSArray
+                        var i = 0
+                        repeat{
+                            let cultivoJson = cultivosJson[i] as! NSMutableDictionary
+                            let abonos = cultivoJson["abonos"] as! String
+                            let id = cultivoJson["_id"] as! String
+                            let descCosechar = cultivoJson["descCosechar"] as! String
+                            let descCrecimiento = cultivoJson["descCrecimiento"] as! String
+                            let descripcion = cultivoJson["descripcion"] as! String
+                            let espacioEntrePlantas = cultivoJson["espacioEntrePlantas"] as! String
+                            let frecuenciaRiego = cultivoJson["frecuenciaRiego"] as! String
+                            let imgCultivo = cultivoJson["imgCultivo"] as! String
+                            let imgMeses = cultivoJson["imgMeses"] as! String
+                            let mesesCosecha = cultivoJson["mesesCosecha"] as! String
+                            let mesesSiembra = cultivoJson["mesesSiembra"] as! String
+                            let necesitaPoda = cultivoJson["necesitaPoda"] as! String
+                            let nombre = cultivoJson["nombre"] as! String
+                            let numMesesCrecimiento = cultivoJson["numMesesCrecimiento"] as! Int
+                            let numMesesSiembra = cultivoJson["numMesesSiembra"] as! Int
+                            let tempMax = cultivoJson["tempMax"] as! Int
+                            let tempMin = cultivoJson["tempMin"] as! Int
+                            let tipoTierra = cultivoJson["tipoTierra"] as! String
+                            let solSombra = cultivoJson["solSombra"] as! String
+                            let descTrasplantar = cultivoJson["descrTransplantar"] as! String
+                            let descSiembra = cultivoJson["descSiembra"] as! String
+                            let localizacion = cultivoJson["localizacion"] as! String
+                            let cultivo = Cultivo.init(id: id, nombre: nombre, descripcion: descripcion, mesesSiembra: mesesSiembra, mesesCosecha: mesesCosecha, tipoTierra: tipoTierra, espacioEntrePlantas: espacioEntrePlantas, necesitaPoda: necesitaPoda, frecuenciaRiego: frecuenciaRiego, tempMax: tempMax, tempMin: tempMin, numMesesSiembra: numMesesSiembra, numMesesCrecimiento: numMesesCrecimiento, descCosechar: descCosechar, descCrecimiento: descCrecimiento, imgCultivo: imgCultivo, imgMeses: imgMeses,abonos: abonos,solSombra:solSombra, descTrasplantar:descTrasplantar, descSiembra:descSiembra, localizacion: localizacion)
+                                self.cultivo = cultivo
+                                DispatchQueue.main.async {
                     self.performSegue (withIdentifier: "miCultivo", sender: self)
                 }
+                            i = i + 1;
+                        }while(i < cultivosJson.count)
+                    }
+                }
+                    task.resume()
+                
             }
         }
         task.resume()

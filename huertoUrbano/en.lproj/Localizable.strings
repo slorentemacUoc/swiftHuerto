@@ -53,3 +53,7 @@
 "Permitir notificaciones" = "Enable notifications";
 "Permitir gps" = "Allow gps";
 "Registros huerta" = "Currently there are no crops in my garden";
+"Huerto urbana" = "Urban garden";
+"Huerto trasplantar" = "Your garden needs to be transplanted";
+"Huerto podar" = "Your garden needs to be pruned";
+"Huerto regar" = "Your garden needs to be watered";

@@ -30,12 +30,13 @@ class Cultivo: NSObject{
     var solSombra = "";
     var descTrasplantar = "";
     var descrSiembra = "";
+    var localizacion = "";
     
     
     init(id: String, nombre: String, descripcion: String,mesesSiembra: String, mesesCosecha:String,
          tipoTierra:String, espacioEntrePlantas: String, necesitaPoda:String, frecuenciaRiego:String,
          tempMax: Int, tempMin:Int, numMesesSiembra:Int, numMesesCrecimiento:Int, descCosechar:String,
-         descCrecimiento: String, imgCultivo:String, imgMeses:String, abonos:String, solSombra:String, descTrasplantar:String, descSiembra:String){
+         descCrecimiento: String, imgCultivo:String, imgMeses:String, abonos:String, solSombra:String, descTrasplantar:String, descSiembra:String, localizacion: String){
         self.id = id;
         self.nombre = nombre;
         self.descripcion = descripcion;
@@ -57,10 +58,11 @@ class Cultivo: NSObject{
         self.solSombra = solSombra;
         self.descTrasplantar = descTrasplantar;
         self.descrSiembra = descSiembra;
+        self.localizacion = localizacion;
         super.init();
     }
     
     convenience override init(){
-        self.init(id: "", nombre: "", descripcion: "", mesesSiembra: "", mesesCosecha: "", tipoTierra: "", espacioEntrePlantas: "", necesitaPoda: "", frecuenciaRiego: "", tempMax: 0, tempMin: 0, numMesesSiembra: 0, numMesesCrecimiento: 0, descCosechar: "", descCrecimiento: "", imgCultivo: "", imgMeses: "", abonos: "", solSombra: "", descTrasplantar: "", descSiembra: "")
+        self.init(id: "", nombre: "", descripcion: "", mesesSiembra: "", mesesCosecha: "", tipoTierra: "", espacioEntrePlantas: "", necesitaPoda: "", frecuenciaRiego: "", tempMax: 0, tempMin: 0, numMesesSiembra: 0, numMesesCrecimiento: 0, descCosechar: "", descCrecimiento: "", imgCultivo: "", imgMeses: "", abonos: "", solSombra: "", descTrasplantar: "", descSiembra: "", localizacion: "")
     }
 }

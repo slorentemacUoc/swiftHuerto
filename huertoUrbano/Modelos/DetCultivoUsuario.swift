@@ -18,12 +18,9 @@ class DetCultivoUsuario: NSObject{
     var notificarRegar = false;
     var notificarPoda = false;
     var notificarTrasplantar = false;
-    var descSiembra = "";
-    var descCosecha = "";
-    var descCrecimiento = "";
-    var descTrasplantar = "";
+
     
-    init(idCultivoUsuario:String, fechaInicio:String, cosecha:Bool, siembra:Bool, crecimiento:Bool, trasplantar:Bool, notificarRegar:Bool, notificarPoda:Bool, notificarTrasplantar:Bool, descSiembra:String, descCosecha:String, descCrecimiento:String, descTrasplantar:String){
+    init(idCultivoUsuario:String, fechaInicio:String, cosecha:Bool, siembra:Bool, crecimiento:Bool, trasplantar:Bool, notificarRegar:Bool, notificarPoda:Bool, notificarTrasplantar:Bool){
         self.idCultivoUsuario = idCultivoUsuario;
         self.fechaInicio = fechaInicio;
         self.cosecha = cosecha;
@@ -33,14 +30,10 @@ class DetCultivoUsuario: NSObject{
         self.notificarRegar = notificarRegar;
         self.notificarPoda = notificarPoda;
         self.notificarTrasplantar = notificarTrasplantar;
-        self.descSiembra = descSiembra;
-        self.descCosecha = descCosecha;
-        self.descCrecimiento = descCrecimiento;
-        self.descTrasplantar = descTrasplantar;
         super.init();
     }
     
     convenience override init(){
-        self.init(idCultivoUsuario: "", fechaInicio: "", cosecha: false, siembra: false, crecimiento: false, trasplantar: false, notificarRegar: false, notificarPoda: false, notificarTrasplantar: false, descSiembra: "", descCosecha: "", descCrecimiento: "", descTrasplantar: "")
+        self.init(idCultivoUsuario: "", fechaInicio: "", cosecha: false, siembra: false, crecimiento: false, trasplantar: false, notificarRegar: false, notificarPoda: false, notificarTrasplantar: false)
     }
 }

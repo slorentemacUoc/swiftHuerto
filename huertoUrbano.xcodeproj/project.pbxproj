@@ -57,6 +57,7 @@
 		E102854D21AD7DC200A6811F /* TableViewCellHuerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHuerta.swift; sourceTree = "<group>"; };
 		E102854F21AD7EC700A6811F /* ViewControllerMiHuerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMiHuerta.swift; sourceTree = "<group>"; };
 		E102855121AD839300A6811F /* CultivoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultivoUsuario.swift; sourceTree = "<group>"; };
+		E124B22121B98272002E6300 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E136DC8821B3C908003D40AA /* ViewControllerAlta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAlta.swift; sourceTree = "<group>"; };
 		E136DC8B21B3DF3C003D40AA /* ViewControllerConfiguracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfiguracion.swift; sourceTree = "<group>"; };
 		E1AC55CB21AA9755009E144B /* huertoUrbano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huertoUrbano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +117,7 @@
 		E1AC55C221AA9755009E144B = {
 			isa = PBXGroup;
 			children = (
+				E124B22121B98272002E6300 /* Location.gpx */,
 				E1AC561621AAAE02009E144B /* Localizable.strings */,
 				E1AC55CD21AA9755009E144B /* huertoUrbano */,
 				E1AC55E221AA9758009E144B /* huertoUrbanoTests */,

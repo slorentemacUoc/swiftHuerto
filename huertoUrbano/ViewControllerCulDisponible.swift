@@ -96,7 +96,10 @@ class ViewControllerCulDisponible: UIViewController {
         
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "fechaInicio=" + fechaString + "&cosecha=false&siembra=false&crecimiento=false&transplantar=false" + "&notificarRegar=false&notificarPoda=false&notificarTransplantar=false&descSiembra=" + self.cultivo.descrSiembra + "&descCosecha=" + self.cultivo.descCosechar + "&descTrasplantar=" + self.cultivo.descTrasplantar + "&descCrecimiento=" + self.cultivo.descCrecimiento
+        let postString1 = "fechaInicio=" + fechaString + "&cosecha=false&siembra=false&crecimiento=false&transplantar=false" + "&notificarRegar=false&notificarPoda=false&notificarTransplantar=false&descSiembra=" + self.cultivo.descrSiembra + "&descCosecha=" + self.cultivo.descCosechar
+        let postString2 = "&descTrasplantar=" + self.cultivo.descTrasplantar + "&descCrecimiento=" + self.cultivo.descCrecimiento + "&numMesesSiembra="
+        let postString3 = String.init(self.cultivo.numMesesSiembra) + "&numMesesCrecimiento=" + String.init(self.cultivo.numMesesCrecimiento)
+        let postString = postString1 + postString2 + postString3
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request){ (data, response, error) in
             if(error == nil){

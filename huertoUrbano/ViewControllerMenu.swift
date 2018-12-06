@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewControllerMenu: UIViewController {
+class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
 
     @IBOutlet weak var btCultivosDisp: UIButton!
     @IBOutlet weak var btMiHuerta: UIButton!
@@ -17,7 +18,12 @@ class ViewControllerMenu: UIViewController {
     
     var usuario : Usuario!
     var cultivos = [Cultivo]()
+    var cultivosLocalizacion = [Cultivo]()
+    var cultivosSiembra = [Cultivo]()
     var miHuerta = [CultivoUsuario]()
+    var locationManager: CLLocationManager!
+    var localizacionUsuario: Int = 0
+    var cultivosAlfabetica = [Cultivo]()
     
     override func viewDidLoad() {
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -28,8 +34,23 @@ class ViewControllerMenu: UIViewController {
         btMiHuerta.setTitle(NSLocalizedString("Mi huerta", comment: ""), for: .normal)
         btConfiguracion.setTitle(NSLocalizedString("Configuracion", comment: ""), for: .normal)
         btCerrarSesion.setTitle(NSLocalizedString("Cerrar sesion", comment: ""), for: .normal)
+        
+        if(usuario.permiteGps){
+            if(CLLocationManager.locationServicesEnabled()){
+                locationManager = CLLocationManager();
+                locationManager.delegate = self;
+                locationManager.requestAlwaysAuthorization()
+                locationManager.startUpdatingLocation()
+            }
+        }
     }
     
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if(manager.location != nil){
+            ordenaPorLocalizacion(coordenada: manager.location!.coordinate)
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         miHuerta = [CultivoUsuario]()
@@ -58,6 +79,63 @@ class ViewControllerMenu: UIViewController {
         }
     }
     
+    func ordenaPorLocalizacion(coordenada: CLLocationCoordinate2D){
+        let latitud = coordenada.latitude
+        let longitud = coordenada.latitude
+        if((latitud < 40) && (longitud > -3.99)){
+            localizacionUsuario = 4
+        }else if((latitud > 40) && (longitud > -3.99)){
+            localizacionUsuario = 2
+        }else if((latitud > 40) && (longitud < -3.99)){
+            localizacionUsuario = 1
+        }else{ localizacionUsuario = 3}
+        var i = 0;
+        cultivosLocalizacion = [Cultivo]()
+        repeat{
+            if(cultivos[i].localizacion.contains(String.init(localizacionUsuario))){
+                cultivosLocalizacion.insert(cultivos[i], at: 0)
+            }else{
+                cultivosLocalizacion.insert(cultivos[i], at: cultivosLocalizacion.count)
+            }
+            i = i + 1
+        }while(i < cultivos.count)
+    }
+    
+    func ordenaSiembraAlfabetica(){
+        let date = Date()
+        let calendar = NSCalendar.current
+        let componentes = calendar.dateComponents([.year, .month, .day], from: date)
+        let mes = componentes.month!
+        var mesBuscar = ""
+        switch mes{
+        case 1: mesBuscar = "EN"; break;
+        case 2: mesBuscar = "FE"; break;
+        case 3: mesBuscar = "MA"; break;
+        case 4: mesBuscar = "AB"; break;
+        case 5: mesBuscar = "MY"; break;
+        case 6: mesBuscar = "JN"; break;
+        case 7: mesBuscar = "JL"; break;
+        case 8: mesBuscar = "AG"; break;
+        case 9: mesBuscar = "SP"; break;
+        case 10: mesBuscar = "OC"; break;
+        case 11: mesBuscar = "NO"; break;
+        case 12: mesBuscar = "DC"; break;
+        default: break
+        }
+        var i = 0
+        cultivosSiembra = [Cultivo]()
+        cultivosAlfabetica = [Cultivo]()
+        cultivosAlfabetica = cultivos.sorted(by: {$0.nombre < $1.nombre})
+        repeat{
+            if(cultivos[i].mesesSiembra.contains(String.init(mesBuscar))){
+                cultivosSiembra.insert(cultivos[i], at: 0)
+            }else{
+                cultivosSiembra.insert(cultivos[i], at: cultivosSiembra.count)
+            }
+            i = i + 1
+        }while(i < cultivos.count)
+    }
+    
     @IBAction func irConfiguracion(_ sender: Any) {
         self.performSegue(withIdentifier: "irConfiguracion", sender: self)
     }
@@ -69,9 +147,19 @@ class ViewControllerMenu: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "cultivosDisponibles"){
+            ordenaSiembraAlfabetica()
             let listacultivos = segue.destination as! ViewControllerCultivos
             listacultivos.usuario = self.usuario;
-            listacultivos.cultivos = self.cultivos;
+            if(self.localizacionUsuario == 0){
+                listacultivos.cultivos = self.cultivosAlfabetica
+                listacultivos.cultivosLocalizacion = nil
+            }else{
+                listacultivos.cultivos = self.cultivosLocalizacion
+                listacultivos.cultivosLocalizacion = self.cultivosLocalizacion
+            }
+            listacultivos.cultivosAlfabetico = self.cultivosAlfabetica
+            listacultivos.cultivosTemporada = self.cultivosSiembra
+            
         }else if (segue.identifier == "mihuerta"){
             
             let listacultivos = segue.destination as! ViewControllerMiHuerta
@@ -126,7 +214,8 @@ class ViewControllerMenu: UIViewController {
                     let solSombra = cultivoJson["solSombra"] as! String
                     let descTrasplantar = cultivoJson["descrTransplantar"] as! String
                     let descSiembra = cultivoJson["descSiembra"] as! String
-                    let cultivo = Cultivo.init(id: id, nombre: nombre, descripcion: descripcion, mesesSiembra: mesesSiembra, mesesCosecha: mesesCosecha, tipoTierra: tipoTierra, espacioEntrePlantas: espacioEntrePlantas, necesitaPoda: necesitaPoda, frecuenciaRiego: frecuenciaRiego, tempMax: tempMax, tempMin: tempMin, numMesesSiembra: numMesesSiembra, numMesesCrecimiento: numMesesCrecimiento, descCosechar: descCosechar, descCrecimiento: descCrecimiento, imgCultivo: imgCultivo, imgMeses: imgMeses,abonos: abonos,solSombra:solSombra, descTrasplantar:descTrasplantar, descSiembra:descSiembra)
+                    let localizacion = cultivoJson["localizacion"] as! String
+                    let cultivo = Cultivo.init(id: id, nombre: nombre, descripcion: descripcion, mesesSiembra: mesesSiembra, mesesCosecha: mesesCosecha, tipoTierra: tipoTierra, espacioEntrePlantas: espacioEntrePlantas, necesitaPoda: necesitaPoda, frecuenciaRiego: frecuenciaRiego, tempMax: tempMax, tempMin: tempMin, numMesesSiembra: numMesesSiembra, numMesesCrecimiento: numMesesCrecimiento, descCosechar: descCosechar, descCrecimiento: descCrecimiento, imgCultivo: imgCultivo, imgMeses: imgMeses,abonos: abonos,solSombra:solSombra, descTrasplantar:descTrasplantar, descSiembra:descSiembra, localizacion: localizacion)
                     self.cultivos.append(cultivo)
                     i = i + 1;
                 }while(i < cultivosJson.count)

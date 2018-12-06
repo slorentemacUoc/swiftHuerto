@@ -14,14 +14,30 @@ class ViewControllerCultivos: UIViewController,  UITableViewDataSource, UITableV
     @IBOutlet weak var tablaCultivosDisponibles: UITableView!
     var usuario : Usuario!
     var cultivos:Array<Cultivo>!
+    var cultivosLocalizacion:Array<Cultivo>!
+    var cultivosTemporada:Array<Cultivo>!
+    var cultivosAlfabetico:Array<Cultivo>!
     var cultivo: Cultivo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tablaCultivosDisponibles.dataSource = self
-        tablaCultivosDisponibles.delegate = self
-
+        tablaCultivosDisponibles.dataSource = self;
+        tablaCultivosDisponibles.delegate = self;
+        var derechaLocalizacion: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: "localizacion:")
+        var derechaTemporada: UIBarButtonItem = UIBarButtonItem(title: "dfs", style: UIBarButtonItem.Style.plain, target: self, action: Selector("temporada"))
+        var derechaAlfabetico: UIBarButtonItem = UIBarButtonItem(title: "asdf", style: UIBarButtonItem.Style.plain, target: self, action: Selector("alfabetico"))
+        self.navigationItem.setRightBarButtonItems([derechaLocalizacion,derechaTemporada,derechaAlfabetico], animated: true)
+    }
+    
+  @objc  func localizacion() {
+        print("search pressed")
+    }
+    func temporada() {
+        print("search pressed")
+    }
+    func alfabetico(sender:UIButton) {
+        print("search pressed")
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

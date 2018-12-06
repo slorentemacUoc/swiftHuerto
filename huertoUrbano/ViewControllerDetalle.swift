@@ -15,6 +15,7 @@ class ViewControllerDetalle: UIViewController {
     var usuario : Usuario!
     var cultivoUsuario: CultivoUsuario!
     var detCultivoUsuario: DetCultivoUsuario!
+    var cultivo: Cultivo!
     @IBOutlet weak var swSiembra: UISwitch!
     @IBOutlet weak var descSiembra: UILabel!
     @IBOutlet weak var nombre: UILabel!
@@ -47,10 +48,10 @@ class ViewControllerDetalle: UIViewController {
         super.viewDidLoad()
         let idioma = Locale.current.languageCode
         let txtNombre  = cultivoUsuario.nombre.split(separator: ";")
-        let txtSiembra = detCultivoUsuario.descSiembra.split(separator: ";")
-        let txtTras = detCultivoUsuario.descTrasplantar.split(separator: ";")
-        let txtCuidar = detCultivoUsuario.descCrecimiento.split(separator: ";")
-        let txtCosechar = detCultivoUsuario.descCosecha.split(separator: ";")
+        let txtSiembra = cultivo.descrSiembra.split(separator: ";")
+        let txtTras = cultivo.descTrasplantar.split(separator: ";")
+        let txtCuidar = cultivo.descCrecimiento.split(separator: ";")
+        let txtCosechar = cultivo.descCosechar.split(separator: ";")
         if(idioma == "en"){
             self.navigationItem.title = String.init(txtNombre[1])
             descSiembra.text = String.init(txtSiembra[1])
@@ -83,6 +84,10 @@ class ViewControllerDetalle: UIViewController {
             if(detCultivoUsuario.notificarPoda){swPoda.isOn = true}else{swPoda.isOn = false}
             if(detCultivoUsuario.notificarRegar){swRiego.isOn = true}else{swRiego.isOn = false}
             if(detCultivoUsuario.notificarTrasplantar){swNotTras.isOn = true}else{swNotTras.isOn = false}
+            if(cultivo.necesitaPoda == "no"){
+                swPoda.isEnabled = false;
+                swPoda.isOn = false;
+            }
         }
         
         if(detCultivoUsuario.cosecha){
@@ -142,51 +147,90 @@ class ViewControllerDetalle: UIViewController {
     }
     
     @IBAction func actualizaRiego(_ sender: Any) {
+        if(swRiego.isOn){
+            let center = UNUserNotificationCenter.current()
+            let contenido = UNMutableNotificationContent()
+            contenido.title = NSLocalizedString("Huerto urbana", comment: "")
+            contenido.body = NSLocalizedString("Huerto regar", comment: "")
+            if(usuario.permiteSonido){
+                contenido.sound = UNNotificationSound.default
+            }else{
+                contenido.sound = nil
+            }
+            contenido.badge = 1
+            let date = Date(timeIntervalSinceNow: 3600)
+            var triggerFrecuencia = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+            let freRiego = cultivo.frecuenciaRiego.split(separator: ";")
+            if(freRiego[2] == "1"){
+                triggerFrecuencia = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+            }else if (freRiego[2] == "2"){
+                triggerFrecuencia = Calendar.current.dateComponents([.weekOfMonth,.minute,.second], from: date)
+            }
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerFrecuencia, repeats: false)
+            let peticion = UNNotificationRequest.init(identifier: "Regar", content: contenido, trigger: trigger)
+            
+            center.add(peticion, withCompletionHandler: {(error) in
+            })
+        }else{
+            let borraNotificacion = UNNotificationAction(identifier: "BorraRegar", title: "BorraRegar", options:[])
+            let category = UNNotificationCategory(identifier: "Regar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
+            UNUserNotificationCenter.current().setNotificationCategories([category])
+        }
         actualizaDetalle()
     }
     
     @IBAction func actualizaNotTras(_ sender: Any) {
-        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval., repeats: <#T##Bool#>)
-        
-        var fecha = detCultivoUsuario.fechaInicio
-        print(fecha)
-        let index = fecha.index(fecha.startIndex, offsetBy: 5)
-        print("que tiene end")
-        let end = fecha.index(index, offsetBy: 2)
-        print (end)
-        var a = String(fecha[index..<end])
-        print("a tiene")
-        print(a)
-        let center = UNUserNotificationCenter.current()
-        let contenido = UNMutableNotificationContent()
-        contenido.title = "titulo"
-        contenido.subtitle = "subtitulo"
-        contenido.body = "mensaje"
-        contenido.sound = UNNotificationSound.default
-        contenido.badge = 1
-        //let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 2.0, repeats: false)
-       // var dateComponent = DateComponents()
-        //dateComponent.minute = 1
-        //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
-        let intervalo: Double = 60 * 60 * 24 * 3
-        print("el intervalo es")
-        print(intervalo)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: false)
-        let peticion = UNNotificationRequest.init(identifier: "Prueba", content: contenido, trigger: trigger)
-        
-        center.add(peticion, withCompletionHandler: {(error) in
-            if(error != nil){
-                print("error")
+        if(swNotTras.isOn){
+            let center = UNUserNotificationCenter.current()
+            let contenido = UNMutableNotificationContent()
+            contenido.title = NSLocalizedString("Huerto urbana", comment: "")
+            contenido.body = NSLocalizedString("Huerto trasplantar", comment: "")
+            if(usuario.permiteSonido){
+                contenido.sound = UNNotificationSound.default
             }else{
-                print("Funciona")
+                contenido.sound = nil
             }
-        })
+            contenido.badge = 1
+            let intervalo: Double = 60 * 60 * 24 * Double.init(cultivo.numMesesSiembra)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: false)
+            let peticion = UNNotificationRequest.init(identifier: "Trasplantar", content: contenido, trigger: trigger)
+            
+            center.add(peticion, withCompletionHandler: {(error) in
+            })
+        }else{
+            let borraNotificacion = UNNotificationAction(identifier: "BorraTras", title: "BorraTras", options:[])
+            let category = UNNotificationCategory(identifier: "Trasplantar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
+            UNUserNotificationCenter.current().setNotificationCategories([category])
+        }
         actualizaDetalle()
     }
     
     
     @IBAction func actualizaPoda(_ sender: Any) {
-     
+        if(swPoda.isOn){
+            let center = UNUserNotificationCenter.current()
+            let contenido = UNMutableNotificationContent()
+            contenido.title = NSLocalizedString("Huerto urbana", comment: "")
+            contenido.body = NSLocalizedString("Huerto podar", comment: "")
+            if(usuario.permiteSonido){
+                contenido.sound = UNNotificationSound.default
+            }else{
+                contenido.sound = nil
+            }
+            contenido.badge = 1
+            let intervalo1: Double = 60 * 60 * 24 * (Double.init(cultivo.numMesesCrecimiento)/2)
+            let intervalo2: Double = 60 * 60 * 24 * Double.init(cultivo.numMesesSiembra)
+            let intervalo = intervalo1 + intervalo2
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: false)
+            let peticion = UNNotificationRequest.init(identifier: "Podar", content: contenido, trigger: trigger)
+            
+            center.add(peticion, withCompletionHandler: {(error) in
+            })
+        }else{
+            let borraNotificacion = UNNotificationAction(identifier: "BorraPoda", title: "BorraPoda", options:[])
+            let category = UNNotificationCategory(identifier: "Podar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
+            UNUserNotificationCenter.current().setNotificationCategories([category])
+        }
         actualizaDetalle()
     }
     
@@ -294,7 +338,7 @@ class ViewControllerDetalle: UIViewController {
         let postString2 = "&crecimiento=" + cuidar + "&transplantar=" + tras + "&notificarRegar=" + regar + "&notificarTransplantar=" + notTras  + "&notificarPoda="
         var poda = "false"
         if(self.swPoda.isOn){poda = "true"}
-        let postString3 = poda + "&descSiembra=" + self.detCultivoUsuario.descSiembra + "&descCosecha=" + self.detCultivoUsuario.descCosecha + "&descTrasplantar=" + self.detCultivoUsuario.descTrasplantar + "&descCrecimiento=" + self.detCultivoUsuario.descCrecimiento
+        let postString3 = poda
         let postString = postString1 + postString2 +  postString3
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request){ (data, response, error) in
