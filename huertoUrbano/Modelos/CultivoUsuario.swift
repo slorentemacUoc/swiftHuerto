@@ -9,6 +9,7 @@
 import Foundation
 
 class CultivoUsuario: NSObject{
+    //Campos del objeto cultivoUsuario
     var id = "";
     var idCultivoUsuario = "";
     var idCultivo = "";
@@ -16,7 +17,7 @@ class CultivoUsuario: NSObject{
     var nombre = "";
     var imgCultivo = "";
     
-    
+    //Constructor del objeto cultivoUsuario
     init(id: String, idCultivoUsuario : String, idCultivo: String,idUsuario: String, nombre:String,  imgCultivo:String){
         self.id = id;
         self.idCultivoUsuario = idCultivoUsuario;
@@ -26,7 +27,7 @@ class CultivoUsuario: NSObject{
         self.imgCultivo = imgCultivo;
         super.init();
     }
-    
+    //Constructor vacío del objeto cultivoUsuario
     convenience override init(){
         self.init(id: "", idCultivoUsuario: "", idCultivo: "", idUsuario: "", nombre: "",  imgCultivo: "")
     }

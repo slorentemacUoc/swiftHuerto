@@ -279,7 +279,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wov-Go-iXl" userLabel="cultivo">
-                                                    <rect key="frame" x="8" y="8" width="304" height="33.666666666666664"/>
+                                                    <rect key="frame" x="8" y="8" width="398" height="33.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -328,28 +328,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEt-B0-VeQ" userLabel="nombreCult">
-                                <rect key="frame" x="8" y="35" width="396" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="t10-TE-BR0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv1-gP-h00" userLabel="descripcion" customClass="labelParrafo" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="8" y="80" width="386" height="90"/>
+                                <rect key="frame" x="8" y="25" width="386" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="ZXY-Od-gsd"/>
+                                    <constraint firstAttribute="height" constant="90" id="xQx-D0-u55"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXA-XT-Dqj" userLabel="verano" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="70" y="185" width="70" height="30"/>
+                                <rect key="frame" x="70" y="130" width="65" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="C9J-Jd-P6L"/>
+                                    <constraint firstAttribute="width" constant="65" id="C9J-Jd-P6L"/>
                                     <constraint firstAttribute="height" constant="30" id="mWq-AO-gXY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -357,9 +348,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uay-Hr-nTH" userLabel="otoño" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="140" y="185" width="70" height="30"/>
+                                <rect key="frame" x="135" y="130" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="2a9-ZO-jVk"/>
+                                    <constraint firstAttribute="width" constant="60" id="2a9-ZO-jVk"/>
                                     <constraint firstAttribute="height" constant="30" id="mtd-Im-b6E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -367,9 +358,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIT-DA-uA2" userLabel="invierno" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="210" y="185" width="70" height="30"/>
+                                <rect key="frame" x="195" y="130" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Tfy-AL-0At"/>
+                                    <constraint firstAttribute="width" constant="60" id="Tfy-AL-0At"/>
                                     <constraint firstAttribute="height" constant="30" id="ct9-kI-nfg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -377,7 +368,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJn-Kv-ePD" userLabel="primavera" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="280" y="185" width="70" height="30"/>
+                                <rect key="frame" x="255" y="130" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SzZ-Cu-tg6"/>
                                     <constraint firstAttribute="width" constant="70" id="suq-xV-9Zl"/>
@@ -387,7 +378,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWv-cO-uqU" userLabel="siembra" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="8" y="215" width="62" height="30"/>
+                                <rect key="frame" x="8" y="160" width="62" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Yip-hL-gRZ"/>
                                     <constraint firstAttribute="width" constant="62" id="tAm-JP-Fex"/>
@@ -397,7 +388,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gb-j7-LNo" userLabel="cosecha" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="8" y="245" width="62" height="30"/>
+                                <rect key="frame" x="8" y="190" width="62" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Bmu-sp-pKq"/>
                                     <constraint firstAttribute="width" constant="62" id="DYI-E6-R3Z"/>
@@ -407,19 +398,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTH-et-NgX" userLabel="verSiembra" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="70" y="215" width="70" height="30"/>
+                                <rect key="frame" x="70" y="160" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Zbm-WC-11g"/>
-                                    <constraint firstAttribute="width" constant="70" id="d34-UB-tUl"/>
+                                    <constraint firstAttribute="width" constant="65" id="d34-UB-tUl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsm-3N-TSO" userLabel="otoSiembra" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="140" y="215" width="70" height="30"/>
+                                <rect key="frame" x="135" y="160" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="c8g-Wt-Rlu"/>
+                                    <constraint firstAttribute="width" constant="60" id="c8g-Wt-Rlu"/>
                                     <constraint firstAttribute="height" constant="30" id="eY3-WA-NAT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -427,17 +418,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcN-Eo-AYR" userLabel="invSiembra" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="210" y="215" width="70" height="30"/>
+                                <rect key="frame" x="195" y="160" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6h1-3t-9Yi"/>
-                                    <constraint firstAttribute="width" constant="70" id="HZj-iN-osn"/>
+                                    <constraint firstAttribute="width" constant="60" id="HZj-iN-osn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-5Y-Tkp" userLabel="priSiembra" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="280" y="215" width="70" height="30"/>
+                                <rect key="frame" x="255" y="160" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ufq-ca-Mzq"/>
                                     <constraint firstAttribute="width" constant="70" id="fiD-sH-I2H"/>
@@ -447,9 +438,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZO-6v-cjy" userLabel="verCosecha" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="70" y="245" width="70" height="30"/>
+                                <rect key="frame" x="70" y="190" width="65" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="44B-Et-LEq"/>
+                                    <constraint firstAttribute="width" constant="65" id="44B-Et-LEq"/>
                                     <constraint firstAttribute="height" constant="30" id="Qu8-by-RhB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -457,19 +448,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUB-UM-jOB" userLabel="otoCosecha" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="140" y="245" width="70" height="30"/>
+                                <rect key="frame" x="135" y="190" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="iky-eA-4PI"/>
-                                    <constraint firstAttribute="width" constant="70" id="yRc-Kl-kt2"/>
+                                    <constraint firstAttribute="width" constant="60" id="yRc-Kl-kt2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1j-1b-eAO" userLabel="invCosecha" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="210" y="245" width="70" height="30"/>
+                                <rect key="frame" x="195" y="190" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Ddg-8R-P1c"/>
+                                    <constraint firstAttribute="width" constant="60" id="Ddg-8R-P1c"/>
                                     <constraint firstAttribute="height" constant="30" id="dsN-75-9va"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -477,7 +468,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVO-LU-6WR" userLabel="priCosecha" customClass="labelRecuadrado" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="280" y="245" width="70" height="30"/>
+                                <rect key="frame" x="255" y="190" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="Cx8-lp-ZCu"/>
                                     <constraint firstAttribute="height" constant="30" id="O8H-nF-CFl"/>
@@ -487,70 +478,70 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mM-PC-0ol" userLabel="tipoTierra">
-                                <rect key="frame" x="8" y="290" width="386" height="25"/>
+                                <rect key="frame" x="8" y="230" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="2IQ-6r-yMK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZm-ri-Ub6" userLabel="espacio">
-                                <rect key="frame" x="8" y="330" width="386" height="25"/>
+                                <rect key="frame" x="8" y="265" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="4IB-U6-45P"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4F-Ni-Ugt" userLabel="poda">
-                                <rect key="frame" x="8" y="370" width="386" height="25"/>
+                                <rect key="frame" x="8" y="300" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="c4O-At-Pj5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKB-z7-9u4" userLabel="frecuenciaRiego">
-                                <rect key="frame" x="8" y="410" width="386" height="25"/>
+                                <rect key="frame" x="8" y="335" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Fsz-25-WfB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-8c-aiE" userLabel="abono">
-                                <rect key="frame" x="8" y="450" width="386" height="25"/>
+                                <rect key="frame" x="8" y="370" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="cqq-Kx-Rg1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgk-IK-PMh" userLabel="sol">
-                                <rect key="frame" x="8" y="490" width="386" height="25"/>
+                                <rect key="frame" x="8" y="405" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="beo-fw-ecH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRE-DB-4sM" userLabel="temp">
-                                <rect key="frame" x="8" y="530" width="386" height="25"/>
+                                <rect key="frame" x="8" y="440" width="406" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="AtQ-gw-eVt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zes-nj-twK" userLabel="btCultivar" customClass="BotonAplicacion" customModule="huertoUrbano" customModuleProvider="target">
-                                <rect key="frame" x="8" y="570" width="398" height="30"/>
+                                <rect key="frame" x="8" y="475" width="398" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LvF-WY-ggC"/>
                                 </constraints>
@@ -564,32 +555,30 @@
                         <constraints>
                             <constraint firstItem="OVO-LU-6WR" firstAttribute="leading" secondItem="Z1j-1b-eAO" secondAttribute="trailing" id="0C7-cV-IQj"/>
                             <constraint firstItem="2gb-j7-LNo" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="2LF-HS-zKE"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="sEt-B0-VeQ" secondAttribute="trailing" constant="10" id="2Zk-6w-kZq"/>
-                            <constraint firstItem="sEt-B0-VeQ" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="2hW-ge-Jov"/>
-                            <constraint firstItem="zv1-gP-h00" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="3Uu-nc-iVE"/>
                             <constraint firstItem="2gb-j7-LNo" firstAttribute="top" secondItem="zWv-cO-uqU" secondAttribute="bottom" id="3sE-EM-t3n"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="kgk-IK-PMh" secondAttribute="trailing" constant="20" id="4G4-1D-9kA"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="kgk-IK-PMh" secondAttribute="trailing" id="4G4-1D-9kA"/>
                             <constraint firstItem="OVO-LU-6WR" firstAttribute="top" secondItem="fyJ-5Y-Tkp" secondAttribute="bottom" id="69U-f3-ZGX"/>
                             <constraint firstItem="oXA-XT-Dqj" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="15" id="6CY-Nx-5FI"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="3mM-PC-0ol" secondAttribute="trailing" constant="20" id="8X1-2F-tSl"/>
-                            <constraint firstItem="xsm-3N-TSO" firstAttribute="leading" secondItem="zWv-cO-uqU" secondAttribute="trailing" constant="70" id="AEt-wy-6bb"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="3mM-PC-0ol" secondAttribute="trailing" id="8X1-2F-tSl"/>
+                            <constraint firstItem="xsm-3N-TSO" firstAttribute="leading" secondItem="zWv-cO-uqU" secondAttribute="trailing" constant="65" id="AEt-wy-6bb"/>
                             <constraint firstItem="tZO-6v-cjy" firstAttribute="top" secondItem="gTH-et-NgX" secondAttribute="bottom" id="BdK-hd-XOA"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="zv1-gP-h00" secondAttribute="trailing" constant="20" id="Esk-OQ-yfF"/>
                             <constraint firstItem="Z1j-1b-eAO" firstAttribute="leading" secondItem="rUB-UM-jOB" secondAttribute="trailing" id="Fqx-fi-GHR"/>
                             <constraint firstItem="gTH-et-NgX" firstAttribute="top" secondItem="oXA-XT-Dqj" secondAttribute="bottom" id="H3d-H0-ZCN"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="sRE-DB-4sM" secondAttribute="trailing" constant="20" id="Hjn-p0-XnI"/>
-                            <constraint firstItem="sRE-DB-4sM" firstAttribute="top" secondItem="kgk-IK-PMh" secondAttribute="bottom" constant="15" id="J0i-R1-VAV"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="sRE-DB-4sM" secondAttribute="trailing" id="Hjn-p0-XnI"/>
+                            <constraint firstItem="sRE-DB-4sM" firstAttribute="top" secondItem="kgk-IK-PMh" secondAttribute="bottom" constant="10" id="J0i-R1-VAV"/>
                             <constraint firstItem="zWv-cO-uqU" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="45" id="J0v-rs-oPI"/>
                             <constraint firstItem="nIT-DA-uA2" firstAttribute="leading" secondItem="uay-Hr-nTH" secondAttribute="trailing" id="JtN-N1-71b"/>
-                            <constraint firstItem="bKB-z7-9u4" firstAttribute="top" secondItem="h4F-Ni-Ugt" secondAttribute="bottom" constant="15" id="KHZ-7y-pPP"/>
+                            <constraint firstItem="bKB-z7-9u4" firstAttribute="top" secondItem="h4F-Ni-Ugt" secondAttribute="bottom" constant="10" id="KHZ-7y-pPP"/>
                             <constraint firstItem="xsm-3N-TSO" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="45" id="L37-em-v1S"/>
                             <constraint firstItem="3mM-PC-0ol" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="LZc-18-iFa"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="h4F-Ni-Ugt" secondAttribute="trailing" constant="20" id="MiX-VL-urd"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="h4F-Ni-Ugt" secondAttribute="trailing" id="MiX-VL-urd"/>
                             <constraint firstItem="h4F-Ni-Ugt" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="MpM-8U-MY9"/>
-                            <constraint firstItem="h4F-Ni-Ugt" firstAttribute="top" secondItem="QZm-ri-Ub6" secondAttribute="bottom" constant="15" id="OFb-0c-RNg"/>
+                            <constraint firstItem="h4F-Ni-Ugt" firstAttribute="top" secondItem="QZm-ri-Ub6" secondAttribute="bottom" constant="10" id="OFb-0c-RNg"/>
                             <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="zes-nj-twK" secondAttribute="trailing" constant="8" id="Ojq-1a-Tf4"/>
                             <constraint firstItem="kgk-IK-PMh" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="P7i-lx-dzC"/>
                             <constraint firstItem="CJn-Kv-ePD" firstAttribute="leading" secondItem="nIT-DA-uA2" secondAttribute="trailing" id="PuJ-g1-sck"/>
-                            <constraint firstItem="zes-nj-twK" firstAttribute="top" secondItem="sRE-DB-4sM" secondAttribute="bottom" constant="15" id="Q2c-Mi-08n"/>
+                            <constraint firstItem="zes-nj-twK" firstAttribute="top" secondItem="sRE-DB-4sM" secondAttribute="bottom" constant="10" id="Q2c-Mi-08n"/>
                             <constraint firstItem="gTH-et-NgX" firstAttribute="leading" secondItem="zWv-cO-uqU" secondAttribute="trailing" id="Q5t-WT-KEn"/>
                             <constraint firstItem="uay-Hr-nTH" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="15" id="QXy-o8-erk"/>
                             <constraint firstItem="ZUP-8c-aiE" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="Rio-cY-m5s"/>
@@ -598,27 +587,27 @@
                             <constraint firstItem="bKB-z7-9u4" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="V15-af-yfS"/>
                             <constraint firstItem="fcN-Eo-AYR" firstAttribute="top" secondItem="nIT-DA-uA2" secondAttribute="bottom" id="Vo1-zg-Iuu"/>
                             <constraint firstItem="oXA-XT-Dqj" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="70" id="W1b-wT-k7c"/>
-                            <constraint firstItem="sEt-B0-VeQ" firstAttribute="top" secondItem="X5k-0a-ZdC" secondAttribute="top" constant="15" id="Ypf-k1-4UF"/>
                             <constraint firstItem="nIT-DA-uA2" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="15" id="ZfC-Au-6lV"/>
                             <constraint firstItem="tZO-6v-cjy" firstAttribute="leading" secondItem="2gb-j7-LNo" secondAttribute="trailing" id="a7v-7R-QGv"/>
                             <constraint firstItem="sRE-DB-4sM" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="bNt-Xl-Lxs"/>
                             <constraint firstItem="zes-nj-twK" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="c2n-mj-Unz"/>
-                            <constraint firstItem="ZUP-8c-aiE" firstAttribute="top" secondItem="bKB-z7-9u4" secondAttribute="bottom" constant="15" id="d4T-og-JXb"/>
+                            <constraint firstItem="ZUP-8c-aiE" firstAttribute="top" secondItem="bKB-z7-9u4" secondAttribute="bottom" constant="10" id="d4T-og-JXb"/>
                             <constraint firstItem="rUB-UM-jOB" firstAttribute="top" secondItem="xsm-3N-TSO" secondAttribute="bottom" id="d68-qS-Hcp"/>
-                            <constraint firstItem="QZm-ri-Ub6" firstAttribute="top" secondItem="3mM-PC-0ol" secondAttribute="bottom" constant="15" id="d9F-g3-erh"/>
+                            <constraint firstItem="QZm-ri-Ub6" firstAttribute="top" secondItem="3mM-PC-0ol" secondAttribute="bottom" constant="10" id="d9F-g3-erh"/>
                             <constraint firstItem="QZm-ri-Ub6" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="gEa-O2-kPn"/>
+                            <constraint firstItem="zv1-gP-h00" firstAttribute="leading" secondItem="X5k-0a-ZdC" secondAttribute="leading" constant="8" id="h9X-sa-PK1"/>
                             <constraint firstItem="CJn-Kv-ePD" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="15" id="hgn-2C-oWa"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="QZm-ri-Ub6" secondAttribute="trailing" constant="20" id="jUs-qU-hpb"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="ZUP-8c-aiE" secondAttribute="trailing" constant="20" id="k8L-Lh-Pqc"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="QZm-ri-Ub6" secondAttribute="trailing" id="jUs-qU-hpb"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="ZUP-8c-aiE" secondAttribute="trailing" id="k8L-Lh-Pqc"/>
                             <constraint firstItem="fcN-Eo-AYR" firstAttribute="leading" secondItem="xsm-3N-TSO" secondAttribute="trailing" id="kze-Qz-YT7"/>
-                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="bKB-z7-9u4" secondAttribute="trailing" constant="20" id="lCd-Rd-2tM"/>
-                            <constraint firstItem="3mM-PC-0ol" firstAttribute="top" secondItem="2gb-j7-LNo" secondAttribute="bottom" constant="15" id="myL-oG-fbD"/>
+                            <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="bKB-z7-9u4" secondAttribute="trailing" id="lCd-Rd-2tM"/>
+                            <constraint firstItem="3mM-PC-0ol" firstAttribute="top" secondItem="2gb-j7-LNo" secondAttribute="bottom" constant="10" id="myL-oG-fbD"/>
+                            <constraint firstItem="zv1-gP-h00" firstAttribute="top" secondItem="X5k-0a-ZdC" secondAttribute="top" constant="5" id="nFI-Ls-tiY"/>
                             <constraint firstItem="fyJ-5Y-Tkp" firstAttribute="leading" secondItem="fcN-Eo-AYR" secondAttribute="trailing" id="ohA-jQ-q1R"/>
                             <constraint firstItem="X5k-0a-ZdC" firstAttribute="trailing" secondItem="zv1-gP-h00" secondAttribute="trailing" constant="20" id="p3a-HO-FOD"/>
                             <constraint firstItem="Z1j-1b-eAO" firstAttribute="top" secondItem="fcN-Eo-AYR" secondAttribute="bottom" id="qz0-Mc-yiE"/>
-                            <constraint firstItem="zv1-gP-h00" firstAttribute="top" secondItem="sEt-B0-VeQ" secondAttribute="bottom" constant="15" id="r19-Hg-fgf"/>
                             <constraint firstItem="fyJ-5Y-Tkp" firstAttribute="top" secondItem="zv1-gP-h00" secondAttribute="bottom" constant="45" id="s5c-BY-hDt"/>
-                            <constraint firstItem="kgk-IK-PMh" firstAttribute="top" secondItem="ZUP-8c-aiE" secondAttribute="bottom" constant="15" id="sdi-PI-6gn"/>
+                            <constraint firstItem="kgk-IK-PMh" firstAttribute="top" secondItem="ZUP-8c-aiE" secondAttribute="bottom" constant="10" id="sdi-PI-6gn"/>
                             <constraint firstItem="rUB-UM-jOB" firstAttribute="leading" secondItem="tZO-6v-cjy" secondAttribute="trailing" id="vci-6c-0Lf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X5k-0a-ZdC"/>
@@ -633,7 +622,6 @@
                         <outlet property="invCosecha" destination="Z1j-1b-eAO" id="D6W-Ih-9eI"/>
                         <outlet property="invSiembra" destination="fcN-Eo-AYR" id="FA6-EK-V0M"/>
                         <outlet property="invierno" destination="nIT-DA-uA2" id="bsk-VQ-cjf"/>
-                        <outlet property="nombreCult" destination="sEt-B0-VeQ" id="eVP-h2-Qch"/>
                         <outlet property="otoCosecha" destination="rUB-UM-jOB" id="cWk-vM-Voi"/>
                         <outlet property="otoSiembra" destination="xsm-3N-TSO" id="WiF-SR-AtJ"/>
                         <outlet property="otono" destination="uay-Hr-nTH" id="rXv-Gw-iYT"/>
@@ -799,7 +787,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkK-82-zol" userLabel="cult">
-                                                    <rect key="frame" x="8" y="8.0000000000000018" width="304" height="27.666666666666671"/>
+                                                    <rect key="frame" x="8" y="8.0000000000000018" width="398" height="27.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

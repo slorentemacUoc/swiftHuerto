@@ -11,14 +11,14 @@ import UserNotifications;
 
 class ViewControllerDetalle: UIViewController {
 
-    
+    //Objetos obtenidos anteriormente
     var usuario : Usuario!
     var cultivoUsuario: CultivoUsuario!
     var detCultivoUsuario: DetCultivoUsuario!
     var cultivo: Cultivo!
+    //Variables de campos de pantalla
     @IBOutlet weak var swSiembra: UISwitch!
     @IBOutlet weak var descSiembra: UILabel!
-    @IBOutlet weak var nombre: UILabel!
     @IBOutlet weak var lbSiembra: UILabel!
     @IBOutlet weak var lbTrasplantar: UILabel!
     @IBOutlet weak var lbCuidar: UILabel!
@@ -46,6 +46,7 @@ class ViewControllerDetalle: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //En función del idioma del sistema todos los campos de la pantalla deben visualizarse en ingles o en español para eso el servicio web los devuelve siguiendo el esquema español;ingles
         let idioma = Locale.current.languageCode
         let txtNombre  = cultivoUsuario.nombre.split(separator: ";")
         let txtSiembra = cultivo.descrSiembra.split(separator: ";")
@@ -65,7 +66,7 @@ class ViewControllerDetalle: UIViewController {
             desCosechar.text = String.init(txtCosechar[0])
             desCuidar.text = String.init(txtCuidar[0])
         }
-        
+        //Comprobación de si el usuario permite notificaciones en su configuración si es así se sólita poder acceder a ellas
         var permiteNot = true
         if(usuario.permiteNotificaciones == false){permiteNot = false}
         else{
@@ -73,6 +74,7 @@ class ViewControllerDetalle: UIViewController {
                 permiteNot = granted
             });
         }
+        //En caso de que no permita notificaciones, todos los switch estarán deshabilitados
         if(permiteNot == false){
             swPoda.isEnabled = false;
             swPoda.isOn = false;
@@ -81,15 +83,17 @@ class ViewControllerDetalle: UIViewController {
             swNotTras.isEnabled = false;
             swNotTras.isOn = false;
         }else{
+            //Si el usuario permite notificaciones, se mostrarán activas o no en función de los datos proporcionados por el servicio web
             if(detCultivoUsuario.notificarPoda){swPoda.isOn = true}else{swPoda.isOn = false}
             if(detCultivoUsuario.notificarRegar){swRiego.isOn = true}else{swRiego.isOn = false}
             if(detCultivoUsuario.notificarTrasplantar){swNotTras.isOn = true}else{swNotTras.isOn = false}
+            //Si el cultivo no necesita poda el switch de la poda estará deshabilitado
             if(cultivo.necesitaPoda == "no"){
                 swPoda.isEnabled = false;
                 swPoda.isOn = false;
             }
         }
-        
+        //Los switch correspondientes al estado del cultivo se activan o desactivan en función de los datos devueltos por el servicio web, para que se visualicen correctamente se utiliza el método modificarEstado
         if(detCultivoUsuario.cosecha){
             swCosechar.isOn = true;
             modificarEstado(modificado: "cosechar")
@@ -106,11 +110,12 @@ class ViewControllerDetalle: UIViewController {
             swTras.isOn = true;
             modificarEstado(modificado: "tras")
         }else{swTras.isOn = false;}
+        //Se ajustan los campos en la pantalla para su mejor visualización
         ajustarCampos()
     }
     
-
     @IBAction func modificaSiembra(_ sender: Any) {
+        //Si el switch de siembra es activado se llama al método modificar siembra para su correcta visualización, en caso contrario la descripción de la misma se invisibiliza
         if(swSiembra.isOn){
             modificarEstado(modificado: "siembra")
         }else{
@@ -119,10 +124,12 @@ class ViewControllerDetalle: UIViewController {
             self.view.layoutIfNeeded()
             self.view.setNeedsUpdateConstraints()
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     @IBAction func modificarTras(_ sender: Any) {
+        //Si el switch de transplantar es activado se llama al método modificar siembra para su correcta visualización, en caso contrario la descripción de la misma se invisibiliza
         if(swTras.isOn){
             modificarEstado(modificado: "tras")
         }else{
@@ -131,10 +138,12 @@ class ViewControllerDetalle: UIViewController {
             self.view.layoutIfNeeded()
             self.view.setNeedsUpdateConstraints()
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     @IBAction func modificarCuidar(_ sender: Any) {
+        //Si el switch de cuidar es activado se llama al método modificar siembra para su correcta visualización, en caso contrario la descripción de la misma se invisibiliza
         if(swCuidar.isOn){
             modificarEstado(modificado: "cuidar")
         }else{
@@ -143,21 +152,26 @@ class ViewControllerDetalle: UIViewController {
             self.view.layoutIfNeeded()
             self.view.setNeedsUpdateConstraints()
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     @IBAction func actualizaRiego(_ sender: Any) {
+        //Si el switch de riego se realiza la notificación en caso contrario se elimina dicha notificación
+        let center = UNUserNotificationCenter.current()
         if(swRiego.isOn){
-            let center = UNUserNotificationCenter.current()
+            //Se crea la notificación los texto son cargados en función del idioma del sistema
             let contenido = UNMutableNotificationContent()
             contenido.title = NSLocalizedString("Huerto urbana", comment: "")
             contenido.body = NSLocalizedString("Huerto regar", comment: "")
+            //Si el usuario permite el sonido la notificación tendra sonido sino no
             if(usuario.permiteSonido){
                 contenido.sound = UNNotificationSound.default
             }else{
                 contenido.sound = nil
             }
             contenido.badge = 1
+            //La frecuencia de riego viene determinada por el capo frecuencia de riego del cultivo que sigue el patrón textoEspañol;textoIngles;numFrecuencia, en función del cual se establece cuando será mandada la notificación creando el trigger según dicho campo
             let date = Date(timeIntervalSinceNow: 3600)
             var triggerFrecuencia = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
             let freRiego = cultivo.frecuenciaRiego.split(separator: ";")
@@ -166,75 +180,86 @@ class ViewControllerDetalle: UIViewController {
             }else if (freRiego[2] == "2"){
                 triggerFrecuencia = Calendar.current.dateComponents([.weekOfMonth,.minute,.second], from: date)
             }
+            //Creacción del trigger
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerFrecuencia, repeats: false)
+            //Creacción de la notificación
             let peticion = UNNotificationRequest.init(identifier: "Regar", content: contenido, trigger: trigger)
-            
+            //Se añade la notificación al UNUserNotificationCenter
             center.add(peticion, withCompletionHandler: {(error) in
             })
         }else{
-            let borraNotificacion = UNNotificationAction(identifier: "BorraRegar", title: "BorraRegar", options:[])
-            let category = UNNotificationCategory(identifier: "Regar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
-            UNUserNotificationCenter.current().setNotificationCategories([category])
+            //Si el usuario desactiva la notificación se regar
+            center.removePendingNotificationRequests(withIdentifiers: ["Regar"])
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     @IBAction func actualizaNotTras(_ sender: Any) {
+        //Si el switch de trasplantar se realiza la notificación en caso contrario se elimina dicha notificación
+        let center = UNUserNotificationCenter.current()
         if(swNotTras.isOn){
-            let center = UNUserNotificationCenter.current()
+            //Se crea la notificación los texto son cargados en función del idioma del sistema
             let contenido = UNMutableNotificationContent()
             contenido.title = NSLocalizedString("Huerto urbana", comment: "")
             contenido.body = NSLocalizedString("Huerto trasplantar", comment: "")
+            //Si el usuario permite el sonido la notificación tendra sonido sino no
             if(usuario.permiteSonido){
                 contenido.sound = UNNotificationSound.default
             }else{
                 contenido.sound = nil
             }
             contenido.badge = 1
+            //Se calcula cuando debe lanzarse la notificación en este caso cuando los meses de siembra hayan finalizado
             let intervalo: Double = 60 * 60 * 24 * Double.init(cultivo.numMesesSiembra)
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: false)
             let peticion = UNNotificationRequest.init(identifier: "Trasplantar", content: contenido, trigger: trigger)
-            
+            //Se añade la notificación al UNUserNotificationCenter
             center.add(peticion, withCompletionHandler: {(error) in
             })
         }else{
-            let borraNotificacion = UNNotificationAction(identifier: "BorraTras", title: "BorraTras", options:[])
-            let category = UNNotificationCategory(identifier: "Trasplantar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
-            UNUserNotificationCenter.current().setNotificationCategories([category])
+            //Si el usuario desactiva la notificación se elimina
+            center.removePendingNotificationRequests(withIdentifiers: ["Trasplantar"])
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     
     @IBAction func actualizaPoda(_ sender: Any) {
+        //Si el switch de podar se realiza la notificación en caso contrario se elimina dicha notificación
+        let center = UNUserNotificationCenter.current()
         if(swPoda.isOn){
-            let center = UNUserNotificationCenter.current()
+            //Se crea la notificación los texto son cargados en función del idioma del sistema
             let contenido = UNMutableNotificationContent()
             contenido.title = NSLocalizedString("Huerto urbana", comment: "")
             contenido.body = NSLocalizedString("Huerto podar", comment: "")
+            //Si el usuario permite el sonido la notificación tendra sonido sino no
             if(usuario.permiteSonido){
                 contenido.sound = UNNotificationSound.default
             }else{
                 contenido.sound = nil
             }
             contenido.badge = 1
+            //Se calcula cuando debe lanzarse la notificación en este caso cuando los meses de siembra y crecimiento hayan finalizado
             let intervalo1: Double = 60 * 60 * 24 * (Double.init(cultivo.numMesesCrecimiento)/2)
             let intervalo2: Double = 60 * 60 * 24 * Double.init(cultivo.numMesesSiembra)
             let intervalo = intervalo1 + intervalo2
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalo, repeats: false)
             let peticion = UNNotificationRequest.init(identifier: "Podar", content: contenido, trigger: trigger)
-            
+            //Se añade la notificación al UNUserNotificationCenter
             center.add(peticion, withCompletionHandler: {(error) in
             })
         }else{
-            let borraNotificacion = UNNotificationAction(identifier: "BorraPoda", title: "BorraPoda", options:[])
-            let category = UNNotificationCategory(identifier: "Podar", actions: [borraNotificacion], intentIdentifiers: [], options: [])
-            UNUserNotificationCenter.current().setNotificationCategories([category])
+            //Si el usuario desactiva la notificación se elimina
+            center.removePendingNotificationRequests(withIdentifiers: ["Trasplantar"])
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     @IBAction func modificarCosechar(_ sender: Any) {
+        //Si el switch de cosechar es activado se llama al método modificar siembra para su correcta visualización, en caso contrario la descripción de la misma se invisibiliza
         if(swCosechar.isOn){
             modificarEstado(modificado: "cosechar")
         }else{
@@ -243,12 +268,14 @@ class ViewControllerDetalle: UIViewController {
             self.view.layoutIfNeeded()
             self.view.setNeedsUpdateConstraints()
         }
+        //Se guada en el servicio web la modificación realizada por el usuario
         actualizaDetalle()
     }
     
     
     
     func modificarEstado(modificado:String){
+        //Todos los campos descripcion de los diferentes estados del cultivo son invisibilizados también se muestran todoslos label del estado negros
         descSiembra.isHidden = true
         self.altDescSiembra.constant = 0
         desTras.isHidden = true
@@ -261,6 +288,7 @@ class ViewControllerDetalle: UIViewController {
         lbSiembra.textColor = UIColor.black
         lbTrasplantar.textColor = UIColor.black
         lbCuidar.textColor = UIColor.black
+        //La descripcion del estado que se haya activado se visibiliza y su label de estado se pone naranja
         if(modificado == "siembra"){
             lbSiembra.textColor = UIColor.orange
             swCuidar.isOn = false
@@ -290,11 +318,13 @@ class ViewControllerDetalle: UIViewController {
             desCosechar.isHidden = false
             self.altDesCosechar.constant = 60
         }
+        //Actualización de las constraints
         self.view.layoutIfNeeded()
         self.view.setNeedsUpdateConstraints()
     }
     
     func ajustarCampos(){
+        //Carga de textos en función del idioma del sistema
         lbSiembra.text = " " + NSLocalizedString("Sembrar", comment: "")
         txSiembra.text =  NSLocalizedString("Sembrar", comment: "")
         
@@ -310,6 +340,22 @@ class ViewControllerDetalle: UIViewController {
         lbRiego.text = NSLocalizedString("Notificar riego", comment: "")
         lbNotTras.text = NSLocalizedString("Notificar trasplantar", comment: "")
         lbPoda.text = NSLocalizedString("Notificar poda", comment: "")
+        //Si se esta accediendo desde un dispositivo muy pequeño todos los textos de la pantalla disminuyen para que su visualiazación sea óptima
+        let device: UIDevice = UIDevice.current
+        if((device.name == "iPhone 5s") || (device.name == "iPhone 6s") || (device.name == "iPhone 6")){
+            descSiembra.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            txSiembra.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            txCosechar.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            txTras.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            txCuidar.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            lbPoda.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            lbRiego.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            lbNotTras.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            desCuidar.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            descSiembra.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            desCosechar.font = UIFont(name: descSiembra.font.fontName, size: 12)
+            desTras.font = UIFont(name: descSiembra.font.fontName, size: 12)
+        }
     }
     
     

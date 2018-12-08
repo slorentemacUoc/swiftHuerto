@@ -12,8 +12,10 @@ class labelParrafo: UILabel {
 
     override func awakeFromNib(){
         super.awakeFromNib()
+        //Todos los párrafos deben admitir más de una línea y tener su texto justificado
         numberOfLines = 0;
         lineBreakMode = NSLineBreakMode.byWordWrapping
+        textAlignment = NSTextAlignment.justified
         sizeToFit()
     }
 

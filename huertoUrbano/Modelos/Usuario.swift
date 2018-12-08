@@ -9,6 +9,7 @@
 import Foundation
 
 class Usuario: NSObject{
+    //Campos del objeto usuario
     var id = "";
     var contrasena = "";
     var email = "";
@@ -17,7 +18,7 @@ class Usuario: NSObject{
     var permiteNotificaciones = false;
     var permiteSonido = false;
     
-    
+    //Constructor del objeto usuario
     init(id: String, contrasena: String, email: String,nombre: String, permiteGps:Bool, permiteNotificaciones:Bool, permiteSonido:Bool){
         self.id = id;
         self.contrasena = contrasena;
@@ -29,6 +30,7 @@ class Usuario: NSObject{
         super.init();
     }
     
+    //Init vacío del objeto usurio
     convenience override init(){
         self.init(id: "", contrasena: "", email: "", nombre: "", permiteGps: false, permiteNotificaciones: false, permiteSonido: false)
     }

@@ -12,6 +12,7 @@ class labelRecuadrado: UILabel {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        //Se pone borde a todos los labelRecuadro
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 0.5
     }

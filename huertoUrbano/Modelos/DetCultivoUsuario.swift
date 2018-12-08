@@ -9,6 +9,7 @@
 import Foundation
 
 class DetCultivoUsuario: NSObject{
+    //Campos del objeto detCultivoUsuario
     var idCultivoUsuario = "";
     var fechaInicio = "";
     var cosecha = false;
@@ -19,7 +20,7 @@ class DetCultivoUsuario: NSObject{
     var notificarPoda = false;
     var notificarTrasplantar = false;
 
-    
+    //Constructor del objeto detCultivoUsuario
     init(idCultivoUsuario:String, fechaInicio:String, cosecha:Bool, siembra:Bool, crecimiento:Bool, trasplantar:Bool, notificarRegar:Bool, notificarPoda:Bool, notificarTrasplantar:Bool){
         self.idCultivoUsuario = idCultivoUsuario;
         self.fechaInicio = fechaInicio;
@@ -32,7 +33,7 @@ class DetCultivoUsuario: NSObject{
         self.notificarTrasplantar = notificarTrasplantar;
         super.init();
     }
-    
+    //Constructor vacío del objeto detCultivoUsuario
     convenience override init(){
         self.init(idCultivoUsuario: "", fechaInicio: "", cosecha: false, siembra: false, crecimiento: false, trasplantar: false, notificarRegar: false, notificarPoda: false, notificarTrasplantar: false)
     }

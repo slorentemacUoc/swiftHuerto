@@ -10,31 +10,36 @@ import UIKit
 import CoreLocation
 
 class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
-
+    //Variables de pantalla
     @IBOutlet weak var btCultivosDisp: UIButton!
     @IBOutlet weak var btMiHuerta: UIButton!
     @IBOutlet weak var btConfiguracion: UIButton!
     @IBOutlet weak var btCerrarSesion: UIButton!
-    
+    //Objeto usuario del alta con todas las propiedades del usuario
     var usuario : Usuario!
+    //Listas de cultivos para la visualización de los cultivos disponibles en todas las variaciones posibles (ordenadas por localizacion, temporada o alfabético) y cultivos la lista por defecto que se muestra
     var cultivos = [Cultivo]()
     var cultivosLocalizacion = [Cultivo]()
+    var cultivosAlfabetica = [Cultivo]()
+    //Lista de los cultivos que tiene el usuario marcados como activos
     var cultivosSiembra = [Cultivo]()
     var miHuerta = [CultivoUsuario]()
+    //Objeto CLLocationManager para poder acceder a la localización del usuario
     var locationManager: CLLocationManager!
+    //Variable para la gestión de la localización del usuario dentro de las localizaciones de los cultivos ( se han establecido 4 posiciones diferentes del 1 al 4 en función de la posición noreste, noroeste, sureste y suroeste de España para los diferentes cultivos
     var localizacionUsuario: Int = 0
-    var cultivosAlfabetica = [Cultivo]()
+
     
     override func viewDidLoad() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
         super.viewDidLoad()
-        obtenCultivos()
-        //Cargo strings en funcion del idioma
+        //En la barra de navegación no debe aparece el botón back
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        //Carga de los strings en función del idioma
         btCultivosDisp.setTitle(NSLocalizedString("Cultivos disponibles", comment: ""), for: .normal)
         btMiHuerta.setTitle(NSLocalizedString("Mi huerta", comment: ""), for: .normal)
         btConfiguracion.setTitle(NSLocalizedString("Configuracion", comment: ""), for: .normal)
         btCerrarSesion.setTitle(NSLocalizedString("Cerrar sesion", comment: ""), for: .normal)
-        
+        //Si el usuario tiene activado el permiso para acceder a su gps se comprueba si lo ha facilitado y en caso contrario se le pregunta
         if(usuario.permiteGps){
             if(CLLocationManager.locationServicesEnabled()){
                 locationManager = CLLocationManager();
@@ -47,32 +52,37 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if(manager.location != nil){
+        //Se realiza la tabla con la ordenación por localización si el usuario lo permite
+        if((manager.location != nil) && (usuario.permiteGps)){
             ordenaPorLocalizacion(coordenada: manager.location!.coordinate)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //Vaciado e inicialinación de las listas de cultivos y de miHuerta
         miHuerta = [CultivoUsuario]()
+        cultivos = [Cultivo]()
         obtenMiHuerta()
+        obtenCultivos()
     }
     @IBAction func IrCultivosDisponibles(_ sender: Any) {
+        //Ir a cultivos disponibles
         self.performSegue (withIdentifier: "cultivosDisponibles", sender: self)
     }
     
     @IBAction func irMiHuerta(_ sender: Any) {
+        //Si el usuario tiene cultivos en su huerta se va a ella, en caso contrario se muestra un mensaje de error informando de que no tiene ningún cultivo en "mihuerta"
         if(miHuerta.count > 0){
             self.performSegue (withIdentifier: "mihuerta", sender: self)
         }else{
            muestraAlert(titulo: "Informacion", texto: "Registros huerta")
-            
         }
         
     }
     
     func muestraAlert(titulo:String, texto:String){
+        //Método para mostrar un alert fuera del hilo principal con el título y el texto proporcionados
         DispatchQueue.main.async {
-            //Si no ha devuelto ningún usuario es porque no esta dado de alta por lo tanto muestro un mensaje de error
             let alertController = UIAlertController(title: NSLocalizedString(titulo, comment: ""), message: NSLocalizedString(texto, comment: ""), preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Aceptar", comment: ""), style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
@@ -80,6 +90,9 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     }
     
     func ordenaPorLocalizacion(coordenada: CLLocationCoordinate2D){
+        //Vaciado de la lista cultivosLocaliación
+        cultivosLocalizacion = [Cultivo]()
+        //Obtención de la posición exacta del usuario con la cual se determina en cual de las 4 zonas geográficas se encuentra, si tenemos la coordenada del usuario
         let latitud = coordenada.latitude
         let longitud = coordenada.latitude
         if((latitud < 40) && (longitud > -3.99)){
@@ -90,44 +103,47 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
             localizacionUsuario = 1
         }else{ localizacionUsuario = 3}
         var i = 0;
-        cultivosLocalizacion = [Cultivo]()
+        //Si el cultivo tiene la localización en la que se encuentra el usuario dicho cultivo se pone al principio de la lista en caso contrario se coloca al final
         repeat{
-            if(cultivos[i].localizacion.contains(String.init(localizacionUsuario))){
-                cultivosLocalizacion.insert(cultivos[i], at: 0)
-            }else{
-                cultivosLocalizacion.insert(cultivos[i], at: cultivosLocalizacion.count)
+            if(cultivos.count > 0){
+                if(cultivos[i].localizacion.contains(String.init(localizacionUsuario))){
+                    cultivosLocalizacion.insert(cultivos[i], at: 0)
+                }else{
+                    cultivosLocalizacion.insert(cultivos[i], at: cultivosLocalizacion.count)
+                }
             }
             i = i + 1
         }while(i < cultivos.count)
+        
     }
     
     func ordenaSiembraAlfabetica(){
+        //Obtención del mes actual
         let date = Date()
         let calendar = NSCalendar.current
         let componentes = calendar.dateComponents([.year, .month, .day], from: date)
         let mes = componentes.month!
         var mesBuscar = ""
-        switch mes{
-        case 1: mesBuscar = "EN"; break;
-        case 2: mesBuscar = "FE"; break;
-        case 3: mesBuscar = "MA"; break;
-        case 4: mesBuscar = "AB"; break;
-        case 5: mesBuscar = "MY"; break;
-        case 6: mesBuscar = "JN"; break;
-        case 7: mesBuscar = "JL"; break;
-        case 8: mesBuscar = "AG"; break;
-        case 9: mesBuscar = "SP"; break;
-        case 10: mesBuscar = "OC"; break;
-        case 11: mesBuscar = "NO"; break;
-        case 12: mesBuscar = "DC"; break;
-        default: break
+        //En el servicio web todos los meses se guardan con formato de dos dígitos por lo que se debe poner también así
+        if(mes > 9 ){
+            mesBuscar = String.init(mes)
+        }else{
+            mesBuscar = "0" + String.init(mes)
         }
         var i = 0
+        //Inicialización de las listas cultivosSiembra y cultivosAlfabetica
         cultivosSiembra = [Cultivo]()
         cultivosAlfabetica = [Cultivo]()
-        cultivosAlfabetica = cultivos.sorted(by: {$0.nombre < $1.nombre})
+        //Primero se realiza la ordenación de la tabla alfabética teniendo encuenta si el lenguaje es ingles o español
+        let idioma = Locale.current.languageCode
+        if(idioma == "en"){
+            cultivosAlfabetica = cultivos.sorted(by: {$0.nombre.split(separator: ";")[1] < $1.nombre.split(separator: ";")[1]})
+        }else{
+            cultivosAlfabetica = cultivos.sorted(by: {$0.nombre < $1.nombre})
+        }
+        //Si el mes actual es uno de los posibles donde se puede sembrar se posiciona al principio de la lista en caso contrario al final
         repeat{
-            if(cultivos[i].mesesSiembra.contains(String.init(mesBuscar))){
+            if(cultivos[i].mesesSiembra.contains(mesBuscar)){
                 cultivosSiembra.insert(cultivos[i], at: 0)
             }else{
                 cultivosSiembra.insert(cultivos[i], at: cultivosSiembra.count)
@@ -137,20 +153,24 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     }
     
     @IBAction func irConfiguracion(_ sender: Any) {
+        //Ir a configuración
         self.performSegue(withIdentifier: "irConfiguracion", sender: self)
     }
     
     @IBAction func cerrarSesion(_ sender: Any) {
+        //Vuelve a la pantalla inicial sin pasarle el objeto usuario
         self.performSegue(withIdentifier: "cerrarSesion", sender: self)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "cultivosDisponibles"){
+            //Si va a la pantalla cultivos disponibles se realiza la carga de las diferentes listas con las ordenaciones disponibles
             ordenaSiembraAlfabetica()
             let listacultivos = segue.destination as! ViewControllerCultivos
             listacultivos.usuario = self.usuario;
-            if(self.localizacionUsuario == 0){
+            //Si el usuario no tiene activada o no permite la localización la lista por defecto que se mostrará es la alfabética en caso contrario la ordenada por localización
+            if((self.localizacionUsuario == 0)||(self.usuario.permiteGps == false)){
                 listacultivos.cultivos = self.cultivosAlfabetica
                 listacultivos.cultivosLocalizacion = nil
             }else{
@@ -159,39 +179,38 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
             }
             listacultivos.cultivosAlfabetico = self.cultivosAlfabetica
             listacultivos.cultivosTemporada = self.cultivosSiembra
-            
         }else if (segue.identifier == "mihuerta"){
-            
+            //Carga los valores necesarios en "mihuerta"
             let listacultivos = segue.destination as! ViewControllerMiHuerta
             listacultivos.usuario = self.usuario;
             listacultivos.miHuerta = self.miHuerta;
         }else if(segue.identifier == "irConfiguracion"){
+            //Carga los valores necesarios en "Configuración"
             let configuracion = segue.destination as! ViewControllerConfiguracion
             configuracion.usuario = self.usuario;
         }
-        
     }
     
     func obtenCultivos(){
-        //Cargo el array con todos los cultivos disponibles para que esten accesibles para toda la aplicacion
+        //Carga del array con todos los cultivos disponibles para que esten accesibles para toda la aplicacion
         let urlString = "https://huerto.herokuapp.com/cultivos";
-        //Creo la url
+        //Creación de la url
         let url = URL(string: urlString);
-        //Creo la peticion get al servicio web
+        //Creación de la peticion get al servicio web
         let request = NSMutableURLRequest(url: url!);
         request.httpMethod = "GET";
-        //Lanzo la petición
-        
-        
+        //Lanzamiento de la petición
         let task = URLSession.shared.dataTask(with: url!){
             (data,response, error ) in
             if(error == nil){
+                //Obtención del resultado en formato json
                 let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 let result = json as! NSMutableDictionary
-                //Obtengo los usuarios que me devuelve el servicio web
+                //Obtengo de los cultivos que devuelve el servicio web y guardado en la lista de cultivos
                 let cultivosJson = result.object(forKey: "cultivo") as! NSArray
                 var i = 0
                 repeat{
+                    //Obtengo los diferentes valores del json y los cargo en un objeto cultivo
                     let cultivoJson = cultivosJson[i] as! NSMutableDictionary
                     let abonos = cultivoJson["abonos"] as! String
                     let id = cultivoJson["_id"] as! String
@@ -225,25 +244,25 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     }
     
     func obtenMiHuerta(){
-        //Formo la string del url del servicio web
+        //Formación de la string del url del servicio web
         let urlString = "https://huerto.herokuapp.com/cultivoUsuario?id=" + usuario.id ;
-        //Creo la url
+        //Creación de la url
         let url = URL(string: urlString);
-        //Creo la peticion get al servicio web
+        //Creación de la peticion get al servicio web
         let request = NSMutableURLRequest(url: url!);
         request.httpMethod = "GET";
-        //Lanzo la petición
-        
+        //Lanzamiento de la petición
         let task = URLSession.shared.dataTask(with: url!){
             (data,response, error ) in
             if(error == nil){
+                //Obtención de la respuesta en formato json
                 let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 let result = json as! NSMutableDictionary
-                //Obtengo los usuarios que me devuelve el servicio web
+                //Obtención de los cultivos pertenecientes a la huerta del usuario
                 let huertaJson = result.object(forKey: "cultivoUsuario") as! NSArray
-                //Si llegan los datos del usuario los guardo en la variable usuario
+                //Si obtengo datos de la huerta los voy guardando en la lista miHuerta
                 if (huertaJson.count > 0){
-                    //Obtengo los diferentes valores del json y los cargo en un objeto Usuario
+                    //Obtengo los diferentes valores del json y los cargo en un objeto cultivoUsuario
                     var i = 0;
                     repeat{
                         let cultivoUsuarioJson = huertaJson[i] as! NSMutableDictionary;

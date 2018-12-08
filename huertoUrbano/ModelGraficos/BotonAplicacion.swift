@@ -12,6 +12,7 @@ class BotonAplicacion: UIButton {
 
     override func awakeFromNib(){
         super.awakeFromNib();
+        //Todos los botones de la aplicación tienen que tener un borde azul
         layer.borderWidth = 1
         layer.borderColor = UIColor.blue.cgColor
     }

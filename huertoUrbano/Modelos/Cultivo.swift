@@ -9,6 +9,7 @@
 import Foundation
 
 class Cultivo: NSObject{
+    //Campos del objeto cultivo
     var id = "";
     var nombre = "";
     var descripcion = "";
@@ -32,7 +33,7 @@ class Cultivo: NSObject{
     var descrSiembra = "";
     var localizacion = "";
     
-    
+    //Constructor del objeto cultivo
     init(id: String, nombre: String, descripcion: String,mesesSiembra: String, mesesCosecha:String,
          tipoTierra:String, espacioEntrePlantas: String, necesitaPoda:String, frecuenciaRiego:String,
          tempMax: Int, tempMin:Int, numMesesSiembra:Int, numMesesCrecimiento:Int, descCosechar:String,
@@ -62,6 +63,7 @@ class Cultivo: NSObject{
         super.init();
     }
     
+    //Constructor vacío del objeto cultivo
     convenience override init(){
         self.init(id: "", nombre: "", descripcion: "", mesesSiembra: "", mesesCosecha: "", tipoTierra: "", espacioEntrePlantas: "", necesitaPoda: "", frecuenciaRiego: "", tempMax: 0, tempMin: 0, numMesesSiembra: 0, numMesesCrecimiento: 0, descCosechar: "", descCrecimiento: "", imgCultivo: "", imgMeses: "", abonos: "", solSombra: "", descTrasplantar: "", descSiembra: "", localizacion: "")
     }
