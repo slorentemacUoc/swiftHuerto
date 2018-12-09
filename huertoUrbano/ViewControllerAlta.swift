@@ -66,7 +66,7 @@ class ViewControllerAlta: UIViewController , UITextFieldDelegate{
         //Se comprueba que la contraseña de los dos campos sea la misa en caso contrario se muestra un alert con el error
         if(contrasena.text == repetirContrasena.text){
             //Se comprueba ninguno de los campos este vacío en caso contrario se muestra un alert con el error
-            if((nombre.text != nil) && (email.text != nil) && (contrasena.text != nil)){
+            if((nombre.text != nil) && (nombre.text != "") && (email.text != nil) && (email.text != "") && (contrasena.text != "") && (contrasena.text != nil)){
                 //Si todos los campos estan rellenados correctamente se realiza el ata
                 alta()
                 //Tras realizar el alta se visualiza la pantalla de nuevo vacía

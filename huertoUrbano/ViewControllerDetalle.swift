@@ -88,7 +88,7 @@ class ViewControllerDetalle: UIViewController {
             if(detCultivoUsuario.notificarRegar){swRiego.isOn = true}else{swRiego.isOn = false}
             if(detCultivoUsuario.notificarTrasplantar){swNotTras.isOn = true}else{swNotTras.isOn = false}
             //Si el cultivo no necesita poda el switch de la poda estará deshabilitado
-            if(cultivo.necesitaPoda == "no"){
+            if(cultivo.necesitaPoda == "No;Not"){
                 swPoda.isEnabled = false;
                 swPoda.isOn = false;
             }
@@ -182,7 +182,6 @@ class ViewControllerDetalle: UIViewController {
             }
             //Creacción del trigger
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerFrecuencia, repeats: false)
-            //Creacción de la notificación
             let peticion = UNNotificationRequest.init(identifier: "Regar", content: contenido, trigger: trigger)
             //Se añade la notificación al UNUserNotificationCenter
             center.add(peticion, withCompletionHandler: {(error) in

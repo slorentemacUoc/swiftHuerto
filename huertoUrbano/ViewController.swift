@@ -105,14 +105,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         self.usuarioWeb = Usuario.init(id: id, contrasena: contrasena, email: email, nombre: nombre, permiteGps: permiteGps, permiteNotificaciones: permiteNotificaciones, permiteSonido: permiteSonido)
                         self.performSegue (withIdentifier: "segueToMain", sender: self)
                     }
-                }else{
-                    //Creo una tarea asíncrona para mostrar un alert ya que debe estar fuera del hilo principal al estar dentro de una consulta a un servicio web
-                    DispatchQueue.main.async {
-                        //Si no ha devuelto ningún usuario es porque no esta dado de alta por lo tanto se muestra un mensaje de error
-                        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Usuario no valido", comment: ""), preferredStyle: UIAlertController.Style.alert)
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Aceptar", comment: ""), style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
-                    }
+                
+            }else{
+                //Creo una tarea asíncrona para mostrar un alert ya que debe estar fuera del hilo principal al estar dentro de una consulta a un servicio web
+                DispatchQueue.main.async {
+                    //Si no ha devuelto ningún usuario es porque no esta dado de alta por lo tanto se muestra un mensaje de error
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Usuario no valido", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Aceptar", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
                 }
             }
         }

@@ -32,6 +32,8 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Obtención de los cultivos disponibles
+        obtenCultivos()
         //En la barra de navegación no debe aparece el botón back
         self.navigationItem.setHidesBackButton(true, animated: true)
         //Carga de los strings en función del idioma
@@ -59,11 +61,8 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Vaciado e inicialinación de las listas de cultivos y de miHuerta
-        miHuerta = [CultivoUsuario]()
-        cultivos = [Cultivo]()
         obtenMiHuerta()
-        obtenCultivos()
+        
     }
     @IBAction func IrCultivosDisponibles(_ sender: Any) {
         //Ir a cultivos disponibles
@@ -255,6 +254,8 @@ class ViewControllerMenu: UIViewController, CLLocationManagerDelegate  {
         let task = URLSession.shared.dataTask(with: url!){
             (data,response, error ) in
             if(error == nil){
+                //Vaciado e inicialinación de la lista miHuerta
+                self.miHuerta = [CultivoUsuario]()
                 //Obtención de la respuesta en formato json
                 let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 let result = json as! NSMutableDictionary

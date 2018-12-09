@@ -15,10 +15,10 @@
 		E102855221AD839300A6811F /* CultivoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = E102855121AD839300A6811F /* CultivoUsuario.swift */; };
 		E136DC8921B3C908003D40AA /* ViewControllerAlta.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136DC8821B3C908003D40AA /* ViewControllerAlta.swift */; };
 		E136DC8C21B3DF3C003D40AA /* ViewControllerConfiguracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136DC8B21B3DF3C003D40AA /* ViewControllerConfiguracion.swift */; };
+		E17080D321BD524D0033E3DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17080D221BD524D0033E3DA /* Images.xcassets */; };
 		E1AC55CF21AA9755009E144B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AC55CE21AA9755009E144B /* AppDelegate.swift */; };
 		E1AC55D121AA9755009E144B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AC55D021AA9755009E144B /* ViewController.swift */; };
 		E1AC55D421AA9755009E144B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1AC55D221AA9755009E144B /* Main.storyboard */; };
-		E1AC55D621AA9758009E144B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1AC55D521AA9758009E144B /* Assets.xcassets */; };
 		E1AC55D921AA9758009E144B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1AC55D721AA9758009E144B /* LaunchScreen.storyboard */; };
 		E1AC55E421AA9758009E144B /* huertoUrbanoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AC55E321AA9758009E144B /* huertoUrbanoTests.swift */; };
 		E1AC55EF21AA9758009E144B /* huertoUrbanoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AC55EE21AA9758009E144B /* huertoUrbanoUITests.swift */; };
@@ -60,10 +60,10 @@
 		E124B22121B98272002E6300 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E136DC8821B3C908003D40AA /* ViewControllerAlta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAlta.swift; sourceTree = "<group>"; };
 		E136DC8B21B3DF3C003D40AA /* ViewControllerConfiguracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfiguracion.swift; sourceTree = "<group>"; };
+		E17080D221BD524D0033E3DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1AC55CB21AA9755009E144B /* huertoUrbano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huertoUrbano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AC55CE21AA9755009E144B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1AC55D021AA9755009E144B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E1AC55D521AA9758009E144B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1AC55D821AA9758009E144B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1AC55DA21AA9758009E144B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1AC55DF21AA9758009E144B /* huertoUrbanoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = huertoUrbanoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,9 +153,9 @@
 				E136DC8821B3C908003D40AA /* ViewControllerAlta.swift */,
 				E136DC8B21B3DF3C003D40AA /* ViewControllerConfiguracion.swift */,
 				E1AC55D221AA9755009E144B /* Main.storyboard */,
-				E1AC55D521AA9758009E144B /* Assets.xcassets */,
 				E1AC55D721AA9758009E144B /* LaunchScreen.storyboard */,
 				E1AC55DA21AA9758009E144B /* Info.plist */,
+				E17080D221BD524D0033E3DA /* Images.xcassets */,
 			);
 			path = huertoUrbano;
 			sourceTree = "<group>";
@@ -305,8 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1AC55D921AA9758009E144B /* LaunchScreen.storyboard in Resources */,
+				E17080D321BD524D0033E3DA /* Images.xcassets in Resources */,
 				E1AC561421AAAE02009E144B /* Localizable.strings in Resources */,
-				E1AC55D621AA9758009E144B /* Assets.xcassets in Resources */,
 				E1AC55D421AA9755009E144B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
