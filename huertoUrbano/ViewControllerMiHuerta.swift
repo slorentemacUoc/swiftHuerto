@@ -72,6 +72,7 @@ class ViewControllerMiHuerta: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cultivoUsuario = miHuerta[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: false)
         obtenDetalleCultivoUsuario()
     }
     

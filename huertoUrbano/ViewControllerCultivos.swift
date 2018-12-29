@@ -86,6 +86,7 @@ class ViewControllerCultivos: UIViewController,  UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Carga del cultivo seleccionado en cultivo para pasarlo a la pantalla "Cultivos disponibles"
         cultivo = cultivos[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: false)
         self.performSegue (withIdentifier: "verCultivo", sender: self)
     }
     

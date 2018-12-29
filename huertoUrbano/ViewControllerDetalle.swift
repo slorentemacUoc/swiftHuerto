@@ -289,28 +289,28 @@ class ViewControllerDetalle: UIViewController {
         lbCuidar.textColor = UIColor.black
         //La descripcion del estado que se haya activado se visibiliza y su label de estado se pone naranja
         if(modificado == "siembra"){
-            lbSiembra.textColor = UIColor.orange
+            lbSiembra.textColor = UIColor.brown
             swCuidar.isOn = false
             swCosechar.isOn = false
             swTras.isOn = false
             descSiembra.isHidden = false
             self.altDescSiembra.constant = 60
         }else if(modificado == "tras"){
-            lbTrasplantar.textColor = UIColor.orange
+            lbTrasplantar.textColor = UIColor.brown
             swCuidar.isOn = false
             swSiembra.isOn = false
             swCosechar.isOn = false
             desTras.isHidden = false
             self.altDescTras.constant = 60
         }else if(modificado == "cuidar"){
-            lbCuidar.textColor = UIColor.orange
+            lbCuidar.textColor = UIColor.brown
             swSiembra.isOn = false
             swCosechar.isOn = false
             swTras.isOn = false
             desCuidar.isHidden = false
             self.altDescCuidar.constant = 60
         }else if(modificado == "cosechar"){
-            lbCosechar.textColor = UIColor.orange
+            lbCosechar.textColor = UIColor.brown
             swCuidar.isOn = false
             swSiembra.isOn = false
             swTras.isOn = false

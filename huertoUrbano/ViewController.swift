@@ -26,7 +26,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         txUsuario.placeholder = NSLocalizedString("Usuario", comment: "")
         txContrasena.placeholder = NSLocalizedString("Contrasena", comment: "")
         btRegistrar.setTitle(NSLocalizedString("Registrarse", comment: ""), for: .normal)
-        
         //Obtención del delegado
         txUsuario.delegate = self
         txContrasena.delegate = self
